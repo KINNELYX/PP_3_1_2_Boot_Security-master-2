@@ -22,7 +22,7 @@
 <h3 align="center">
     <input type="button" value="Add new user"
            onclick="window.location.href= 'addUser'" style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
-    <form th:action="@{/logout}" method="POST">
+    <form th:action="@{/logout}" method="POST"th:style="'mix-blend-mode: multiply'">
         <input type="submit" value="Logout"/>
     </form>
 </h3>
@@ -40,7 +40,10 @@
         <th>Operations</th>
     </tr>
     <tr align="center" th:each="user : ${users}">
-        <td th:utext="${user.getId()}"></td>
+
+        <td>
+            <a th:href="@{/admin/user/{id}(id=${user.getId()})}"><b th:utext="${user.getId()}"></b></a>
+        </td>
         <td th:utext="${user.getSurname()}"></td>
         <td th:utext="${user.getName()}"></td>
         <td th:utext="${user.getPatronymic()}"></td>

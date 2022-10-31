@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Users</title>
+    <title>User</title>
 </head>
 <body>
-<h1 align="center" style="font-family: 'Javanese Text',system-ui">Welcome to Users page</h1>
-<a th:utext="${user.getName()}"></a>
+<h1 align="center" style="font-family: 'Javanese Text',system-ui">Welcome to your page <a th:utext="${users.get().name}"></a> </h1>
+
 <style>table th, table td {
     padding: 15px;
     width: 7%;
@@ -20,38 +20,49 @@
         font-size: 30px;
     }
 </style>
-<h3 align="center">
-    <input type="button" value="Add new user"
-           onclick="window.location.href= 'addUser'" style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
-</h3>
 <br>
 <table border="1" cellpadding="5" align="center">
     <tr style="font-size: 30px; font-style: initial; font-family: 'Segoe UI Black',system-ui">
-        <th> Id</th>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <th>ID</th>
+        </div>
+        <!--<th> Id</th>-->
         <th> Surname</th>
         <th> Name</th>
         <th> Patronymic</th>
         <th> Age</th>
         <th>Username</th>
-        <th>Password</th>
-        <th>Operations</th>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <th>Password</th>
+        </div>
+
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <th>Operations</th>
+        </div>
+
     </tr>
-    <tr align="center" th:each="users : ${user}">
-        <td th:utext="${user.getId()}"></td>
-        <td th:utext="${user.getSurname()}"></td>
-        <td th:utext="${user.getName()}"></td>
-        <td th:utext="${user.getPatronymic()}"></td>
-        <td th:utext="${user.getAge()}"></td>
-        <td th:utext="${user.getUsername()}"></td>
-        <td th:utext="${user.getPassword()}"></td>
+    <tr align="center" th:each="user : ${users}">
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <td th:utext="${users.get().id}"></td>
+        </div>
+        <td th:utext="${users.get().surname}"></td>
+        <td th:utext="${users.get().name}"></td>
+        <td th:utext="${users.get().patronymic}"></td>
+        <td th:utext="${users.get().age}"></td>
+        <td th:utext="${users.get().username}"></td>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <td th:utext="${users.get().password}"></td>
+        </div>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
         <td align="center">
-            <a th:href="@{/admin/updateUser/{id}(id=${user.getId()})}"style="color: black">Update</a>
-            <b>|</b>
-            <a th:href="@{/admin/deleteUser/{id}(id=${user.getId()})}" style="color: black">Delete</a>
+        <a th:href="@{/admin/updateUser/{id}(id=${users.get().id})}"style="color: black">Update</a>
+        <b>|</b>
+        <a th:href="@{/admin/deleteUser/{id}(id=${users.get().id})}" style="color: black">Delete</a>
+        </div>
         </td>
     </tr>
 </table>
-<form th:action="@{/logout}" method="POST">
+<form th:action="@{/logout}" method="POST" th:style="'mix-blend-mode: multiply'">
     <input type="submit" value="Logout"/>
 </form>
 </body>

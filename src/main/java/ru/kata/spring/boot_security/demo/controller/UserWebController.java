@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
+import java.util.Optional;
 
 
 @Controller
@@ -27,7 +29,11 @@ public class UserWebController {
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
-        model.addAttribute("user",service.findByUsername(principal.getName()));
+        Optional<User> user = service.findByUsername(principal.getName());
+        model.addAttribute("users",user);
         return "user";
     }
+
+
+
 }
