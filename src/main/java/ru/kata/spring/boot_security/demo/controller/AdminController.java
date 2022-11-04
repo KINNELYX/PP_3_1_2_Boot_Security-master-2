@@ -18,6 +18,7 @@ public class AdminController {
 
 
     private final UserService userService;
+
     @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
@@ -35,7 +36,7 @@ public class AdminController {
         User user = new User();
         Role role = new Role();
         model.addAttribute("user", user);
-        model.addAttribute("role",role);
+        model.addAttribute("role", role);
         return "add-user";
     }
 
@@ -44,7 +45,6 @@ public class AdminController {
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
-
 
 
     @GetMapping("/admin/updateUser/{id}")
@@ -60,8 +60,8 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping ("/admin/user/{id}")
-    public String getUserById (@PathVariable int id, Model model){
+    @GetMapping("/admin/user/{id}")
+    public String getUserById(@PathVariable int id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("users", user);
         return "usersById";

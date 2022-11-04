@@ -1,11 +1,8 @@
 package ru.kata.spring.boot_security.demo.service;
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.EntityGraph;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +15,6 @@ import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.repository.UsersRepository;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.TypedQuery;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +45,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
             usersRepository.save(user);
         } else
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            usersRepository.save(user);
+        usersRepository.save(user);
     }
 
     @Override

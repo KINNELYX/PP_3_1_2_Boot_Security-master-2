@@ -21,7 +21,8 @@
 </style>
 <h3 align="center">
     <input type="button" value="Add new user"
-           onclick="window.location.href= 'addUser'" style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
+           onclick="window.location.href= 'addUser'"
+           style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
 </h3>
 <br>
 <table border="1" cellpadding="5" align="center">
@@ -48,7 +49,7 @@
         <td th:utext="${users.getRoles()}"></td>
         <td th:utext="${users.isEnabled()}"></td>
         <td align="center">
-            <a th:href="@{/admin/updateUser/{id}(id=${users.getId()})}"style="color: black">Update</a>
+            <a th:href="@{/admin/updateUser/{id}(id=${users.getId()})}" style="color: black">Update</a>
             <b>|</b>
             <a th:href="@{/admin/deleteUser/{id}(id=${users.getId()})}" style="color: black">Delete</a>
         </td>

@@ -11,7 +11,7 @@
     padding: 4px;
     width: 4px;
 
-    
+
 }
 </style>
 <style>
@@ -23,8 +23,9 @@
 </style>
 <h3 align="center">
     <input type="button" value="Add new user"
-           onclick="window.location.href= 'addUser'" style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
-    <form th:action="@{/logout}" method="POST"th:style="'mix-blend-mode: multiply'">
+           onclick="window.location.href= 'addUser'"
+           style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
+    <form th:action="@{/logout}" method="POST" th:style="'mix-blend-mode: multiply'">
         <input type="submit" value="Logout"/>
     </form>
 </h3>
@@ -57,7 +58,7 @@
         <td th:utext="${user.getRoles()}"></td>
         <td th:utext="${user.isEnabled()}"></td>
         <td align="center">
-            <a th:href="@{/admin/updateUser/{id}(id=${user.getId()})}"style="color: black">Update</a>
+            <a th:href="@{/admin/updateUser/{id}(id=${user.getId()})}" style="color: black">Update</a>
             <b>|</b>
             <a th:href="@{/admin/deleteUser/{id}(id=${user.getId()})}" style="color: black">Delete</a>
         </td>

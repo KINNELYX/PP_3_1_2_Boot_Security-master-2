@@ -30,10 +30,9 @@ public class UserWebController {
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
         Optional<User> user = service.findByUsername(principal.getName());
-        model.addAttribute("users",user);
+        model.addAttribute("users", user);
         return "user";
     }
-
 
 
 }

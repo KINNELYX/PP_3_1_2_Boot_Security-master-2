@@ -6,7 +6,8 @@
     <title>User</title>
 </head>
 <body>
-<h1 align="center" style="font-family: 'Javanese Text',system-ui">Welcome to your page <a th:utext="${users.get().firstName}"></a> </h1>
+<h1 align="center" style="font-family: 'Javanese Text',system-ui">Welcome to your page <a
+        th:utext="${users.get().firstName}"></a></h1>
 
 <style>table th, table td {
     padding: 15px;
@@ -29,7 +30,7 @@
         <!--<th> Id</th>-->
         <th> Surname</th>
         <th> Name</th>
-        <th> Patronymic</th>
+        <th> Email</th>
         <th> Age</th>
         <th>Username</th>
         <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
@@ -54,10 +55,10 @@
             <td th:utext="${users.get().password}"></td>
         </div>
         <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-        <td align="center">
-        <a th:href="@{/admin/updateUser/{id}(id=${users.get().id})}"style="color: black">Update</a>
-        <b>|</b>
-        <a th:href="@{/admin/deleteUser/{id}(id=${users.get().id})}" style="color: black">Delete</a>
+            <td align="center">
+                <a th:href="@{/admin/updateUser/{id}(id=${users.get().id})}" style="color: black">Update</a>
+                <b>|</b>
+                <a th:href="@{/admin/deleteUser/{id}(id=${users.get().id})}" style="color: black">Delete</a>
         </div>
         </td>
     </tr>
