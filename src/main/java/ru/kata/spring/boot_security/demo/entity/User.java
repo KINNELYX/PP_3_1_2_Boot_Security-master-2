@@ -1,51 +1,50 @@
 package ru.kata.spring.boot_security.demo.entity;
 
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Table(name = "users")
-public class User implements UserDetails{
+@Table(name = "role")
+
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "surname")
-    private String surname;
-    @Column(name = "patronymic")
-    private String patronymic;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "email")
+    private String email;
     @Column(name = "age")
     private int age;
-
-    @ManyToMany (fetch = FetchType.EAGER)
-    private List<Role> roles;
-
     @Column(name = "username")
     private String username;
-
-
     @Column(name = "password")
     private String password;
-
-
     @Column(name = "enabled")
     private boolean enabled = true;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Role> roles;
 
-    public User(String name, String surname, String patronymic, int age, List<Role> roles, String username, String password, boolean enabled) {
-        this.name = name;
-        this.surname = surname;
-        this.patronymic = patronymic;
+
+    public User(String firstName, String lastName, String email, int age, String username, String password, boolean enabled, Set<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.age = age;
-        this.roles = roles;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+        this.roles = roles;
     }
 
     public User() {
@@ -59,28 +58,28 @@ public class User implements UserDetails{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String surname) {
+        this.lastName = surname;
     }
 
-    public String getPatronymic() {
-        return patronymic;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
+    public void setEmail(String patronymic) {
+        this.email = patronymic;
     }
 
     public int getAge() {
@@ -92,12 +91,12 @@ public class User implements UserDetails{
     }
 
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -149,9 +148,9 @@ public class User implements UserDetails{
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", patronymic='" + patronymic + '\'' +
+                ", name='" + firstName + '\'' +
+                ", surname='" + lastName + '\'' +
+                ", patronymic='" + email + '\'' +
                 ", age=" + age +
                 ", roles=" + roles +
                 ", username='" + username + '\'' +
@@ -165,11 +164,11 @@ public class User implements UserDetails{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && age == user.age && enabled == user.enabled && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(patronymic, user.patronymic) && Objects.equals(roles, user.roles) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return id == user.id && age == user.age && enabled == user.enabled && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(roles, user.roles) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, patronymic, age, roles, username, password, enabled);
+        return Objects.hash(id, firstName, lastName, email, age, roles, username, password, enabled);
     }
 }

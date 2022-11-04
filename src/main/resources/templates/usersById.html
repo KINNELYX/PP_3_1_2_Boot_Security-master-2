@@ -27,26 +27,30 @@
 <table border="1" cellpadding="5" align="center">
     <tr style="font-size: 30px; font-style: initial; font-family: 'Segoe UI Black',system-ui">
         <th> Id</th>
-        <th> Surname</th>
-        <th> Name</th>
-        <th> Patronymic</th>
+        <th> First Name</th>
+        <th> Last Name</th>
         <th> Age</th>
+        <th> Email</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Roles</th>
+        <th>Enabled</th>
         <th>Operations</th>
     </tr>
     <tr align="center" th:each="user : ${users}">
-        <td th:utext="${user.getId()}"></td>
-        <td th:utext="${user.getSurname()}"></td>
-        <td th:utext="${user.getName()}"></td>
-        <td th:utext="${user.getPatronymic()}"></td>
-        <td th:utext="${user.getAge()}"></td>
-        <td th:utext="${user.getUsername()}"></td>
-        <td th:utext="${user.getPassword()}"></td>
+        <td th:utext="${users.getId()}"></td>
+        <td th:utext="${users.getFirstName()}"></td>
+        <td th:utext="${users.getLastName()}"></td>
+        <td th:utext="${users.getAge()}"></td>
+        <td th:utext="${users.getEmail()}"></td>
+        <td th:utext="${users.getUsername()}"></td>
+        <td th:utext="${users.getPassword()}"></td>
+        <td th:utext="${users.getRoles()}"></td>
+        <td th:utext="${users.isEnabled()}"></td>
         <td align="center">
-            <a th:href="@{/admin/updateUser/{id}(id=${user.getId()})}"style="color: black">Update</a>
+            <a th:href="@{/admin/updateUser/{id}(id=${users.getId()})}"style="color: black">Update</a>
             <b>|</b>
-            <a th:href="@{/admin/deleteUser/{id}(id=${user.getId()})}" style="color: black">Delete</a>
+            <a th:href="@{/admin/deleteUser/{id}(id=${users.getId()})}" style="color: black">Delete</a>
         </td>
     </tr>
 </table>

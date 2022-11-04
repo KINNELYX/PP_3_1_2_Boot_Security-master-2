@@ -20,18 +20,18 @@
       style="font-size: xx-large; font-family: 'Javanese Text',system-ui;outline: dashed">
     <p>
         <label for="surname">Surname</label>
-        <input type="text" th:field="*{surname}" id="surname" style="background-color: #a4a4a4; font-size: x-large">
+        <input type="text" th:field="*{lastName}" id="surname" style="background-color: #a4a4a4; font-size: x-large">
     </p>
 
     <p>
         <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" id="name" style="background-color: #a4a4a4; font-size: x-large">
+        <input type="text" th:field="*{firstName}" id="name" style="background-color: #a4a4a4; font-size: x-large">
     </p>
 
 
     <p>
-        <label for="patronymic">Patronymic</label>
-        <input type="text" th:field="*{patronymic}" id="patronymic"
+        <label for="email">Email</label>
+        <input type="email" th:field="*{email}" id="email"
                style="background-color: #a4a4a4; font-size: x-large">
     </p>
 
@@ -39,25 +39,41 @@
         <label for="age">Age</label>
         <input type="text" th:field="*{age}" id="age" style="background-color: #a4a4a4; font-size: x-large">
     </p>
+
     <p>
         <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" style="background-color: #a4a4a4; font-size: x-large">
+        <input type="text" th:field="*{username}" id="username" required
+               style="background-color: #a4a4a4; font-size: x-large">
     </p>
+
     <p>
         <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" style="background-color: #a4a4a4; font-size: x-large">
+        <input type="text" th:field="*{password}" id="password"
+               style="background-color: #a4a4a4; font-size: x-large">
     </p>
+
     <p>
         <label for="enabled">Enabled</label>
         <input type="text" th:field="*{enabled}" id="enabled" style="background-color: #a4a4a4; font-size: x-large">
     </p>
 
+    <label>
+        <select size="2" multiple name="roles" required="required" style="font-size: smaller">
+            <option selected="selected" value="2">USER</option>
+            <option value="1">ADMIN</option>
+        </select>
+    </label>
+
+    <br>
+
     <input type="submit" value="OK"
            style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)">
 
 </form>
+
 <form th:action="@{/logout}" method="POST" th:style="'mix-blend-mode: multiply'">
     <input type="submit" value="Logout"/>
+
 </form>
 </body>
 </html>
