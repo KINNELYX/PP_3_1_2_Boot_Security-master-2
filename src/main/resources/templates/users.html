@@ -25,6 +25,11 @@
     <input type="button" value="Add new user"
            onclick="window.location.href= 'addUser'"
            style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
+
+    <input type="button" value="Roles"
+           onclick="window.location.href= 'roles'"
+           style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)"/>
+
     <form th:action="@{/logout}" method="POST" th:style="'mix-blend-mode: multiply'">
         <input type="submit" value="Logout"/>
     </form>

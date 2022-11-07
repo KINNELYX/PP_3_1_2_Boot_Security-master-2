@@ -71,4 +71,31 @@ public class AdminController {
         model.addAttribute("users", user);
         return "usersById";
     }
+
+    @GetMapping("/admin/roles")
+    public String allRoles(Model model) {
+        List<Role> roles = roleService.allRoles();
+        model.addAttribute("roles", roles);
+        return "roles";
+    }
+
+
+    @RequestMapping(value = "/admin/addRole")
+    public String addRole(Model model) {
+        Role role = new Role();
+        model.addAttribute("role", role);
+        return "add-role";
+    }
+
+    @RequestMapping("/admin/saveRole")
+    public String saveRole(@ModelAttribute("roles") Role role) {
+        roleService.saveRole(role);
+        return "redirect:/admin/roles";
+    }
+
+    @RequestMapping("/admin/deleteRole/{id}")
+    public String deleteRole(@PathVariable(name = "id") int id) {
+        roleService.deleteRole(id);
+        return "redirect:/admin/roles";
+    }
 }
