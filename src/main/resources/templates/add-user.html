@@ -57,12 +57,9 @@
         <input type="text" th:field="*{enabled}" id="enabled" style="background-color: #a4a4a4; font-size: x-large">
     </p>
 
-    <label>
-        <select size="2" multiple name="roles" required="required" style="font-size: smaller">
-            <option selected="selected" value="2">USER</option>
-            <option value="1">ADMIN</option>
-        </select>
-    </label>
+    <select id="roles" th:field="*{roles}" multiple="multiple" style="font-size: smaller">
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+    </select>
 
     <br>
 

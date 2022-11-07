@@ -59,13 +59,11 @@
         <label for="enabled">Enabled</label>
         <input type="text" th:field="*{enabled}" id="enabled" style="background-color: #a4a4a4; font-size: x-large">
     </p>
-    <label style="font-family: auto">Roles:
 
-        <select size="2" multiple name="roles" required="required">
-            <option selected="selected" value="1">USER</option>
-            <option value="2">ADMIN</option>
-        </select>
-    </label>
+    <select id="roles" th:field="*{roles}" multiple="multiple" style="font-size: smaller">
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+    </select>
+
     <br>
     <input type="submit" value="OK"
            style="font-family: 'Segoe UI Symbol',system-ui; color:rgba(2,2,2,0.91); font-size: large; background-color: rgba(129,129,129,0.55)">
