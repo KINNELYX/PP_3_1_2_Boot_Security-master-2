@@ -1,17 +1,14 @@
 package ru.kata.spring.boot_security.demo.entity;
 
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "users")
 
 public class User implements UserDetails {
     @Id
